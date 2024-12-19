@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Registrasi Seminar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: rgb(244, 178, 209);
+        }
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 500px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #e86eab;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d67b9c;
+        }
+        .result-container {
+            margin-top: 30px;
+            padding: 25px;
+            border: 1px solid hsl(0, 78%, 85%);
+            border-radius: 5px;
+            background-color: #d67b9c;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registrasi Seminar/Workshop</h2>
+    <div class="form-container">
+        <form id="registrationForm">
+            <label for="nama">Nama Lengkap:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="tempat">Tempat Lahir:</label>
+            <input type="text" id="tempat" name="tempat" required>
+
+            <label for="tanggal">Tanggal Lahir:</label>
+            <input type="date" id="tanggal" name="tanggal">
+
+            <label>Gender:</label>
+            <input type="radio" id="laki-laki" name="gender" value="Laki-laki" required>
+            <label for="laki-laki" style="display:inline;">Laki-laki</label>
+            <input type="radio" id="perempuan" name="gender" value="Perempuan">
+            <label for="perempuan" style="display:inline;">Perempuan</label>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="status">Status Peserta:</label>
+            <select id="status" name="status" required>
+                <option value="">Pilih Status</option>
+                <option value="Mahasiswa">Mahasiswa</option>
+                <option value="Dosen">Dosen</option>
+                <option value="Umum">Umum</option>
+            </select>
+
+            <button type="button" onclick="submitForm()">Daftar</button>
+        </form>
+    </div>
+
+    <div class="result-container" id="result" style="display:none;">
+        <h3>Hasil Registrasi:</h3>
+        <p id="result-nama"></p>
+        <p id="result-tempatLahir"></p>
+        <p id="result-tanggalLahir"></p>
+        <p id="result-gender"></p>
+        <p id="result-email"></p>
+        <p id="result-status"></p>
+    </div>
+
+    <script>
+        function submitForm() {
+    
+    const nama = document.getElementById("nama").value;
+    const tempat = document.getElementById("tempat").value;
+    const tanggal = document.getElementById("tanggal").value;
+    const gender = document.querySelector('input[name="gender"]:checked')?.value;
+    const email = document.getElementById("email").value;
+    const status = document.getElementById("status").value;
+
+    
+    if (!nama || !tempat || !tanggal || !gender || !email || !status) {
+        alert("Semua kolom harus diisi!");
+        return;
+    }
+
+    
+    document.getElementById("result").style.display = "block";
+    document.getElementById("result-nama").innerText = `Nama Lengkap: ${nama}`;
+    document.getElementById("result-tempatLahir").innerText = `Tempat Lahir: ${tempat}`;
+    document.getElementById("result-tanggalLahir").innerText = `Tanggal Lahir: ${tanggal}`;
+    document.getElementById("result-gender").innerText = `Gender: ${gender}`;
+    document.getElementById("result-email").innerText = `Email: ${email}`;
+    document.getElementById("result-status").innerText = `Status Peserta: ${status}`;
+}
+
+        
+    </script>
+</body>
+</html>
